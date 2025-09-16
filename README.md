@@ -80,5 +80,52 @@ Sie installieren Dokuwiki mit
 ```
 podman run -p 8080:8080 --name dokuwiki --restart "always" -v dokuwiki:/storage dokuwiki/dokuwiki:stable
 ```
+Ein mit „podman run“ gestarteter Container bleibt im Terminal aktiv, bis Sie ihn mit Strg-C abbrechen und den Container damit stoppen. Um den Container zu starten, verwenden Sie für dieses Beispiel
+```
+podman start dokuwiki
+```
+Allgemein können Sie auch die Container-ID verwenden, die Sie mit „podman ps -a“ ermitteln.
 
+## Anwendung mit Podman-Compose erstellen
+
+Damit sich Compose-Dateien nutzen lassen, installieren Sie zuerst 
+```
+sudo apt install --no-install-recommends podman-compose
+```
+Podman-compose ist ein Python-Script, das Anweisungen aus einer Compose-Datei mit Podman-Befehlen umsetzt.
+
+Als erstes Beispiel verwenden wir Dokuwiki. Laden Sie die Beispieldatei „dokuwiki-podman-local.yaml“ herunter und speichern Sie sie im Ordner „~/Podman“. Öffnen Sie die Datei in einem Texteditor und passen Sie alle IDs an. „1000“ bezieht sich auf den ersten Benutzer, den Sie bei der Linux-Installation angelegt haben. Wenn Sie ein anderes Konto verwenden, ermitteln Sie mit dem Befehl
+```
+id
+```
+die zugehörigen Werte und setzen diese überall statt „1000“ ein. Sie erhalten damit volle Zugriffsrechte auf den Ordner „~/dokuwiki“. Achten Sie bei Änderungen in der YAML-Datei auf die korrekten Einzüge mit Leerzeichen.
+
+In diesem Download-Ordner starten Sie dann
+```
+podman compose -f dokuwiki-podman-local.yaml up
+```
+Das Ergebnis ist identisch mit dem von „podman run“. Sie sehen die Meldungen im Terminal und stoppen den Container mit Strg-C. Da in der Compose-Datei „restart: always“ angegeben ist, können Sie den Container alternativ mit
+```
+systemctl --user restart podman-restart.service
+```
+aktivieren.
+
+## Weitere Beispiele für Compose-Dateien
+
+**Audiobookshelf** (https://www.audiobookshelf.org) stellt einen Server für gesprochene Audioinhalte im eigenen Netzwerk bereit. Außerdem kann die Software E-Books ausliefern, die sich auch auf dem Smartphone lesen lassen.
+
+**Wordpress** (https://wordpress.org) ist die mit Abstand beliebteste Blog-Software im Internet. Für das lokale Netzwerk ist das CMS (Content-Management-System) vielleicht etwas zu mächtig, eine Installation kann aber sinnvoll sein, wenn man Erfahrungen damit sammeln möchte.
+
+**Paperless-ngx** (https://docs.paperless-ngx.com) ist eine Software zur Ablage und Verwaltung digitalisierter Dokumente. Die Webanwendung unterstützt gängige Dokumenttypen wie PDFs und Word, Excel sowie Libre-Office-Dateien, die Sie mit Tags versehen und damit organisieren können. Der Inhalt der Dokumente lässt sich durchsuchen oder Sie finden Dokumente über einen Filter.
+
+Mit **Immich** (https://immich.app) verwalten Sie Ihre Fotos und Video bequem über eine Weboberfläche. In Kombination mit einer Smartphone-App eignet sich Immich auf dem eigenen PC hervorragend als Alternative zu den Cloud-Speichern von Google und anderen.
+
+## Windows über einen Container starten
+Podman kann mehr als nur Webanwendungen. Die eher ungewöhnliche Idee, Windows 10 oder 11 über einen Container zu starten, stammt von https://github.com/dockur/windows und wir haben die Konfiguration für den deutschsprachigen Raum angepasst. Über http://m6u.de/WDOCK finden Sie die nötigen Dateien. Die Voraussetzung ist ein PC, der KVM/Qemu für die Virtualisierung nutzen kann. Der Podman-Container stellt nur die Software bereit, über die sich Windows starten lässt.
+
+Sie erzeugen den Container mit
+```
+podman compose -f windows-docker.yaml up
+```
+Die ISO-Datei für die Installation wird heruntergeladen und Windows automatisch installiert. Den Fortschritt können Sie im Terminal verfolgen. Der Zugriff auf die Windows-Oberfläche erfolgt im Browser über http://127.0.0.1:8006. Welche weiteren Optionen für die Installation verfügbar sind, erfahren Sie über http://m6u.de/WDOCK.
 
