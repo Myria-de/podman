@@ -118,7 +118,7 @@ aktivieren.
 
 **Paperless-ngx** (https://docs.paperless-ngx.com) ist eine Software zur Ablage und Verwaltung digitalisierter Dokumente. Die Webanwendung unterstützt gängige Dokumenttypen wie PDFs und Word, Excel sowie Libre-Office-Dateien, die Sie mit Tags versehen und damit organisieren können. Der Inhalt der Dokumente lässt sich durchsuchen oder Sie finden Dokumente über einen Filter.
 
-Mit **Immich** (https://immich.app) verwalten Sie Ihre Fotos und Video bequem über eine Weboberfläche. In Kombination mit einer Smartphone-App eignet sich Immich auf dem eigenen PC hervorragend als Alternative zu den Cloud-Speichern von Google und anderen. Starten Sie cen Container mit
+Mit **Immich** (https://immich.app) verwalten Sie Ihre Fotos und Video bequem über eine Weboberfläche. In Kombination mit einer Smartphone-App eignet sich Immich auf dem eigenen PC hervorragend als Alternative zu den Cloud-Speichern von Google und anderen. Starten Sie den Container mit
 ```
 podman compose -f immich-podman-local.yaml --env-file immich.env up
 ```
