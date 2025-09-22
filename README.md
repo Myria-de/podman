@@ -118,7 +118,11 @@ aktivieren.
 
 **Paperless-ngx** (https://docs.paperless-ngx.com) ist eine Software zur Ablage und Verwaltung digitalisierter Dokumente. Die Webanwendung unterstützt gängige Dokumenttypen wie PDFs und Word, Excel sowie Libre-Office-Dateien, die Sie mit Tags versehen und damit organisieren können. Der Inhalt der Dokumente lässt sich durchsuchen oder Sie finden Dokumente über einen Filter.
 
-Mit **Immich** (https://immich.app) verwalten Sie Ihre Fotos und Video bequem über eine Weboberfläche. In Kombination mit einer Smartphone-App eignet sich Immich auf dem eigenen PC hervorragend als Alternative zu den Cloud-Speichern von Google und anderen.
+Mit **Immich** (https://immich.app) verwalten Sie Ihre Fotos und Video bequem über eine Weboberfläche. In Kombination mit einer Smartphone-App eignet sich Immich auf dem eigenen PC hervorragend als Alternative zu den Cloud-Speichern von Google und anderen. Starten Sie cen Container mit
+```
+podman compose -f immich-podman-local.yaml --env-file immich.env up
+```
+Ein Teil der Konfiguration befindet sich in der Datei "immich.env".
 
 ## Windows über einen Container starten
 Podman kann mehr als nur Webanwendungen. Die eher ungewöhnliche Idee, Windows 10 oder 11 über einen Container zu starten, stammt von https://github.com/dockur/windows und wir haben die Konfiguration für den deutschsprachigen Raum angepasst. Über http://m6u.de/WDOCK finden Sie die nötigen Dateien. Die Voraussetzung ist ein PC, der KVM/Qemu für die Virtualisierung nutzen kann. Der Podman-Container stellt nur die Software bereit, über die sich Windows starten lässt.
