@@ -125,11 +125,13 @@ podman compose -f immich-podman-local.yaml --env-file immich.env up
 Ein Teil der Konfiguration befindet sich in der Datei "immich.env".
 
 ## Windows über einen Container starten
-Podman kann mehr als nur Webanwendungen. Die eher ungewöhnliche Idee, Windows 10 oder 11 über einen Container zu starten, stammt von https://github.com/dockur/windows und wir haben die Konfiguration für den deutschsprachigen Raum angepasst. Über http://m6u.de/WDOCK finden Sie die nötigen Dateien. Die Voraussetzung ist ein PC, der KVM/Qemu für die Virtualisierung nutzen kann. Der Podman-Container stellt nur die Software bereit, über die sich Windows starten lässt.
+Podman kann mehr als nur Webanwendungen. Die eher ungewöhnliche Idee, Windows 10 oder 11 über einen Container zu starten, stammt von https://github.com/dockur/windows und wir haben die Konfiguration für den deutschsprachigen Raum angepasst. Über http://m6u.de/WDOCK finden Sie die nötigen Dateien im Ordner "podman-compose". Die Voraussetzung ist ein PC, der KVM/Qemu für die Virtualisierung nutzen kann. Der Podman-Container stellt nur die Software bereit, über die sich Windows starten lässt.
 
-Sie erzeugen den Container mit
+Sie erzeugen den Container etwa für Windows 10 mit
 ```
-podman compose -f windows-docker.yaml up
+podman compose -f podman-compose-rootless-win10.yml up
 ```
-Die ISO-Datei für die Installation wird heruntergeladen und Windows automatisch installiert. Den Fortschritt können Sie im Terminal verfolgen. Der Zugriff auf die Windows-Oberfläche erfolgt im Browser über http://127.0.0.1:8006. Welche weiteren Optionen für die Installation verfügbar sind, erfahren Sie über http://m6u.de/WDOCK.
+Die ISO-Datei für die Installation kopieren Sie in den Ordner "~/win-docker". Ist sie nicht vorhanden, wir das ISO automatisch heruntergeladne.
+
+Den Fortschritt der Installation können Sie im Terminal verfolgen. Der Zugriff auf die Windows-Oberfläche erfolgt im Browser über http://127.0.0.1:8006. Welche weiteren Optionen für die Installation verfügbar sind, erfahren Sie über http://m6u.de/WDOCK.
 
