@@ -1,0 +1,21 @@
+services:
+  dokuwiki:
+    image: dokuwiki/dokuwiki:stable # other tags: master, <date> or <codename>
+    container_name: dokuwiki
+    # Documentation: https://github.com/dokuwiki/docker
+    user: "1000:1000" # run as user
+    userns_mode: keep-id:uid=1000,gid=1000 #use this IDs for $HOME/dokuwiki
+    # für tests
+    #restart: unless-stopped
+    # für autostart
+    restart: always
+    ports:
+      - "8080:8080" # internal port is 8080, map to what you need
+    environment:
+      PHP_TIMEZONE: Europe/Berlin
+      #PHP_MEMORYLIMIT: 256M
+      #PHP_UPLOADLIMIT: 128M
+    volumes:
+      - $HOME/dokuwiki:/storage
+      # or
+      # - dokuwiki:/storage # $HOME/.local/share/containers/storage
